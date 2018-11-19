@@ -11,7 +11,7 @@ import java.awt.image.DataBufferInt;
 
 /**
  * Tạo vòng lặp cho game, lưu trữ một vài tham số cấu hình toàn cục,
- * Gọi phương thức render(), update() cho tất cả các entity
+ * G�?i phương thức render(), update() cho tất cả các entity
  */
 public class Game extends Canvas {
 
@@ -23,8 +23,8 @@ public class Game extends Canvas {
 	
 	public static final String TITLE = "BombermanGame";
 	
-	private static final int BOMBRATE = 1;
-	private static final int BOMBRADIUS = 1;
+	private static final int BOMBRATE = 3;
+	private static final int BOMBRADIUS = 5;
 	private static final double BOMBERSPEED = 1.0;
 	
 	public static final int TIME = 200;

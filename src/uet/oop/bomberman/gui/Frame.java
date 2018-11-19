@@ -26,7 +26,6 @@ public class Frame extends JFrame {
 		_containerpane.add(_gamepane, BorderLayout.PAGE_END);
 		
 		_game = _gamepane.getGame();
-		
 		add(_containerpane);
 		
 		setResizable(false);

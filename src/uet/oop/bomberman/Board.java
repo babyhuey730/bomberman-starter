@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Quản lý thao tác điều khiển, load level, render các màn hình của game
+ * Quản lý thao tác đi�?u khiển, load level, render các màn hình của game
  */
 public class Board implements IRender {
 	protected LevelLoader _levelLoader;

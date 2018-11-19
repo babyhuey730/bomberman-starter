@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Swing Panel hiển thị thông tin thời gian, điểm mà người chơi đạt được
+ * Swing Panel hiển thị thông tin th�?i gian, điểm mà ngư�?i chơi đạt được
  */
 public class InfoPanel extends JPanel {
 	
@@ -17,18 +17,18 @@ public class InfoPanel extends JPanel {
 		setLayout(new GridLayout());
 		
 		timeLabel = new JLabel("Time: " + game.getBoard().getTime());
-		timeLabel.setForeground(Color.white);
+		timeLabel.setForeground(Color.red);
 		timeLabel.setHorizontalAlignment(JLabel.CENTER);
-		
+		          System.out.println(JLabel.CENTER);
 		pointsLabel = new JLabel("Points: " + game.getBoard().getPoints());
-		pointsLabel.setForeground(Color.white);
+		pointsLabel.setForeground(Color.red);
 		pointsLabel.setHorizontalAlignment(JLabel.CENTER);
 		
 		add(timeLabel);
 		add(pointsLabel);
 		
-		setBackground(Color.black);
-		setPreferredSize(new Dimension(0, 40));
+		setBackground(Color.GRAY);
+		setPreferredSize(new Dimension(0, 30));
 	}
 	
 	public void setTime(int t) {

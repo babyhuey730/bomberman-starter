@@ -18,6 +18,7 @@ public class SpriteSheet {
 	public static SpriteSheet tiles = new SpriteSheet("/textures/classic.png", 256);
 	
 	public SpriteSheet(String path, int size) {
+            
 		_path = path;
 		SIZE = size;
 		_pixels = new int[SIZE * SIZE];
@@ -27,6 +28,7 @@ public class SpriteSheet {
 	private void load() {
 		try {
 			URL a = SpriteSheet.class.getResource(_path);
+                        
 			BufferedImage image = ImageIO.read(a);
 			int w = image.getWidth();
 			int h = image.getHeight();

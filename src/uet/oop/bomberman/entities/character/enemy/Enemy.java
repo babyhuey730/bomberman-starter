@@ -13,6 +13,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
 
 import java.awt.*;
+import uet.oop.bomberman.level.FileLevelLoader;
 
 public abstract class Enemy extends Character {
 
@@ -78,26 +79,69 @@ public abstract class Enemy extends Character {
 		// TODO: Tính toán hướng đi và di chuyển Enemy theo _ai và cập nhật giá trị cho _direction
 		// TODO: sử dụng canMove() để kiểm tra xem có thể di chuyển tới điểm đã tính toán hay không
 		// TODO: sử dụng move() để di chuyển
-		// TODO: nhớ cập nhật lại giá trị cờ _moving khi thay đổi trạng thái di chuyển
+		// TODO: nhớ cập nhật lại giá trị c�? _moving khi thay đổi trạng thái di chuyển
+                int xa = 0, ya = 0;
+		if(_steps <= 0){
+			_direction = _ai.calculateDirection();
+			_steps = MAX_STEPS;
+		}
+			
+		if(_direction == 0) ya--; 
+		if(_direction == 2) ya++;
+		if(_direction == 3) xa--;
+		if(_direction == 1) xa++;
+		
+		if(canMove(xa, ya)) {
+			_steps -= 1 + rest;
+			move(xa * _speed, ya * _speed);
+			_moving = true;
+		} else {
+			_steps = 0;
+			_moving = false;
+		}
 	}
 	
 	@Override
 	public void move(double xa, double ya) {
-		if(!_alive) return;
+		if(!_alive && canMove(xa, ya)) return;
 		_y += ya;
 		_x += xa;
 	}
 	
 	@Override
 	public boolean canMove(double x, double y) {
-		// TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không
-		return false;
-	}
+		double xr = _x, yr = _y - 16; //subtract y to get more accurate results
+	
+		//the thing is, subract 15 to 16 (sprite size), so if we add 1 tile we get the next pixel tile with this
+		//we avoid the shaking inside tiles with the help of steps
+		if(_direction == 0) { yr += _sprite.getSize() -1 ; xr += _sprite.getSize()/2; } 
+		if(_direction == 1) {yr += _sprite.getSize()/2; xr += 1;}
+		if(_direction == 2) { xr += _sprite.getSize()/2; yr += 1;}
+		if(_direction == 3) { xr += _sprite.getSize() -1; yr += _sprite.getSize()/2;}
+		
+		int xx = Coordinates.pixelToTile(xr) +(int)x;
+		int yy = Coordinates.pixelToTile(yr) +(int)y;
+		
+		Entity a = _board.getEntity(xx, yy, this); //entity of the position we want to go
+               
+		return a.collide(this);
+           
+        }
 
 	@Override
 	public boolean collide(Entity e) {
 		// TODO: xử lý va chạm với Flame
 		// TODO: xử lý va chạm với Bomber
+		if(e instanceof Flame) {
+			kill();
+			return false;
+		}
+		
+		if(e instanceof Bomber) {
+			((Bomber) e).kill();
+			return true;
+		}
+		
 		return true;
 	}
 	
