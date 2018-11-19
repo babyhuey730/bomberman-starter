@@ -41,11 +41,7 @@ public class Brick extends DestroyableTile {
                      remove();
                      
                 }
-                if(e instanceof Bomber){
-                     destroy();
-                     remove();
-                     
-                }
+                
 		return false;
 	}
         
