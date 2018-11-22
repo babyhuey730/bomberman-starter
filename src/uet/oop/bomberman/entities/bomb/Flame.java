@@ -2,8 +2,10 @@ package uet.oop.bomberman.entities.bomb;
 
 import uet.oop.bomberman.Board;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.character.Bomber;
 import uet.oop.bomberman.entities.character.enemy.Enemy;
 import uet.oop.bomberman.entities.tile.Grass;
+import uet.oop.bomberman.entities.tile.destroyable.Brick;
 import uet.oop.bomberman.graphics.Screen;
 
 public class Flame extends Entity {
@@ -72,6 +74,7 @@ public class Flame extends Entity {
 		int radius = 0;
 		int x = (int)_x;
 		int y = (int)_y;
+                boolean checkBrick = false;
 		while(radius < _radius) {
 			if(_direction == 0) y--;
 			if(_direction == 1) x++;
@@ -80,9 +83,9 @@ public class Flame extends Entity {
 			
 			Entity a = _board.getEntity(x, y, null);
 			
-			if(a instanceof Grass) ++radius; //explosion has to be below the mob
+			if(a instanceof Grass ) ++radius; //explosion has to be below the mob
 			
-			if(a.collide(this) == false) //cannot pass thru
+			if(a.collide(this) == false ) //cannot pass thru
 				break;
 			
 			
@@ -110,7 +113,12 @@ public class Flame extends Entity {
 
 	@Override
 	public boolean collide(Entity e) {
-		// TODO: x? lý va ch?m v?i Bomber, Enemy. Chú ý ??i t??ng này có v? trí chính là v? trí c?a Bomb ?ã n?
-		return true;
+		if(e instanceof Enemy) {
+			((Enemy)e).kill();
+		}
+                if(e instanceof Bomber) {
+			((Bomber)e).kill();
+		}
+                return true;
 	}
 }

@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.character.enemy.Enemy;
+import uet.oop.bomberman.entities.tile.Grass;
 import uet.oop.bomberman.entities.tile.Tile;
 import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.entities.tile.destroyable.Brick;
@@ -190,6 +191,9 @@ public class Bomber extends Character {
 			kill();
 			return true;
 		}
+                if(e instanceof Grass)
+                    e.remove();
+                    
                 return true;
     }
 

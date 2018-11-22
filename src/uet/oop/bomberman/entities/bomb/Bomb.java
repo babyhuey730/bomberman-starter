@@ -83,7 +83,7 @@ public class Bomb extends AnimatedEntitiy {
                 _allowedToPassThru = true;
 		
 		
-		Bomb a = _board.getBombAt(_x, _y);
+		
 		
 		
 		_flames = new Flame[4];
@@ -120,6 +120,10 @@ public class Bomb extends AnimatedEntitiy {
 		}
 		
 		if(e instanceof Flame) {
+			explode();
+			return true;
+		}
+                if(e instanceof FlameSegment) {
 			explode();
 			return true;
 		}

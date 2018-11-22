@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import uet.oop.bomberman.entities.tile.Grass;
 
 /**
  * Tạo vòng lặp cho game, lưu trữ một vài tham số cấu hình toàn cục,
@@ -23,8 +24,8 @@ public class Game extends Canvas {
 	
 	public static final String TITLE = "BombermanGame";
 	
-	private static final int BOMBRATE = 3;
-	private static final int BOMBRADIUS = 5;
+	private static final int BOMBRATE = 1;
+	private static final int BOMBRADIUS = 2;
 	private static final double BOMBERSPEED = 1.0;
 	
 	public static final int TIME = 200;
@@ -151,7 +152,7 @@ public class Game extends Canvas {
 				
 				if(_board.getShow() == 2)
 					--_screenDelay;
-			}
+                        }                        
 		}
 	}
 	
